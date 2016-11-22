@@ -56,13 +56,13 @@ namespace Itsho.DataSetToSQLite
             }
             catch (Exception ex)
             {
-                Logger.Log.Error(ex);
+                //Logger.Log.Error(ex);
             }
         }
 
         public static string CreateSqliteTable(DataTable table)
         {
-						const string NEW_LINE_IN_TABLE_DEF = ",\n";
+             const string NEW_LINE_IN_TABLE_DEF = ",\n";
 						
             // NOTE:, in SQLite type is recommended, not required. Any column can still store any type of data
             // https://www.sqlite.org/datatype3.html
