@@ -126,17 +126,17 @@ namespace Itsho.DataSetToSQLite
         /// Send new instance of StronglyTyped Dataset
         /// returns same instance filled with data
         /// </summary>
-        /// <param name="p_dataSetStronglyTypedTarget"></param>
+        /// <param name="p_dataSetTarget">this parameter must be instanciated before calling the method!</param>
         /// <param name="p_strDBFullPathSource"></param>
         /// <returns></returns>
-        public static bool FillDataSetFromSQLite(string p_strDBFullPathSource, DataSet p_dataSetStronglyTypedTarget)
+        public static bool FillDataSetFromSQLite(string p_strDBFullPathSource, DataSet p_dataSetTarget)
         {
             try
             {
-                if (p_dataSetStronglyTypedTarget == null)
+                if (p_dataSetTarget == null)
                 {
-                    Logger.Log.Error("Parameter " + nameof(p_dataSetStronglyTypedTarget) + " should not be null");
-                    throw new Exception("Parameter " + nameof(p_dataSetStronglyTypedTarget) + " should not be null");
+                    Logger.Log.Error("Parameter " + nameof(p_dataSetTarget) + " should not be null");
+                    throw new Exception("Parameter " + nameof(p_dataSetTarget) + " should not be null");
                 }
 
                 if (!File.Exists(p_strDBFullPathSource))
@@ -149,7 +149,7 @@ namespace Itsho.DataSetToSQLite
                 {
                     con.Open();
 
-                    foreach (DataTable dataTable in p_dataSetStronglyTypedTarget.Tables)
+                    foreach (DataTable dataTable in p_dataSetTarget.Tables)
                     {
                         using (var adapter = new SQLiteDataAdapter("SELECT * FROM " + dataTable.TableName, con))
                         {
